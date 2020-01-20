@@ -1,6 +1,6 @@
 class Url():
     localUrl = "http://localhost:8000"
-    herokuUrl = "https://applemangonara.herokuapp.com/"
+    herokuUrl = "https://applemangonara.herokuapp.com"
     def __init__(self,isLocal):
         self.isLocal = isLocal
     
