@@ -44,6 +44,7 @@ isLocal = Url(False).getUrl()
 ANSWER = ["극히 드물어","가끔 1~2번","종종 3~4번정도","대부분 그랬어","우울증 자가진단 시작하기"]
 
 # @ensure_csrf_cookie
+@csrf_exempt
 def hello(request):
     rData = requestData(request)
     block_id = rData.getBlockId()
