@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from ..models import Question
+from ..models import Question, User_Chat
 from .shared import QUESTION, BLOCK_ID
 
 # 챗봇에 들어갈 응답 
