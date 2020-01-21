@@ -11,7 +11,7 @@ class Post(models.Model):
 class User_Chat(models.Model):
     user = models.CharField(max_length=100)
     total = models.IntegerField(null=True, blank=True)
-    userId = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True)
+    userId = models.CharField(max_length=10, null=True, blank=True)
     
 class Question(models.Model):
     question = models.CharField(max_length=100)
