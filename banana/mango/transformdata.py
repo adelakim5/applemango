@@ -20,7 +20,9 @@ class transformData:
             questions = Question.objects.all().filter(userId=self.user)
             for question in questions:
                 total = total + question.answer
-            
+            userTotal = User_Chat.objects.get(user=self.user)
+            userTotal.total = total
+            userTotal.save()
             data = {
                 "version": "2.0",
                 "template": {
