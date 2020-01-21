@@ -18,6 +18,7 @@ import matplotlib
 matplotlib.use('Agg')
 from collections import Counter
 from konlpy.tag import Okt
+from konlpy import init_jvm
 # wordcloud end 
 from django.shortcuts import render
 from .models import Post
@@ -130,6 +131,8 @@ def diary_delete(request, pk):
 def word(request, pk):
     diary_detail = get_object_or_404(Diary, pk=pk)
     if request.method == 'POST':
+        # init_jvm("C:\Program Files\java\jdk-13.0.2_windows-x64_bin\jdk-13.0.2")
+        init_jvm("<JAVA_HOME>")
         okt = Okt()
         text = diary_detail.detail
         n = okt.nouns(text)
