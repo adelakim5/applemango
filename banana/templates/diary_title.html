@@ -173,7 +173,7 @@ pre.prettyprint{
         <div class="motto">
             <image src="https://i.stack.imgur.com/AIQ61.png" style="width: 100px; height:100px; border-radius : 50px; border: 1px solid white;"/>
             
-            <h2 style="text-decoration: underline;">{{user.username }}</h2>
+            <a href="{% url 'mypage' %}" style="color: #f2f2f2;"><h2 style="text-decoration: underline;">{{user.username }}</h2></a>
             {% endif %}
             <p>간단한 소개를 입력하시오</p>
             {% comment %} 사용자 아이콘 {% endcomment %}
@@ -198,12 +198,6 @@ pre.prettyprint{
 <br/>
  <span class="gradtext">다이어리 목록</span>
  
-    {% if error %}
-    {{ error }}
-    {% endif %}
-
-      <!-- 내가 저장한 다이어리 제목이랑 내용 나오나 확인 -->
-
    {% if user.is_authenticated %}
    <a href="{% url 'diary' %}"> 
       <input class=" btn btn-warning" style="color : white; font-size : 14px; margin : 3px; float : right;" value="작성하기"/>

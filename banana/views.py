@@ -189,6 +189,15 @@ def diary(request):
         messages.add_message(request, messages.ERROR, '오류')
     return render(request, 'diary.html')
 
+def mypage(request):
+    # user Info
+    userInfo = User.objects.all().filter(username=request.user)
+    # user Reserve
+    userReserve = Reserve.objects.all().filter(user=request.user)
+    # user Score
+    userScore = User_Chat.objects.all().filter(userId=request.user)
+    return render(request, 'mypage.html', {'userInfo':userInfo, 'userReserve':userReserve, 'userScore':userScore})
+
 # @ensure_csrf_cookie
 def signup(request):
     if request.method == 'POST':
@@ -215,11 +224,12 @@ def reserve(request):
         user = request.user
         name = request.POST['name']
         sex = request.POST['sex']
+        center = request.POST['center']
         nick = request.POST['nick']
         diary_open = request.POST['diary']
         center_exp = request.POST['center_exp']
         about = request.POST['about']
-        info = Reserve(user=user, name=name, sex=sex, nick=nick, diary_open=diary_open, center_exp=center_exp, about=about)
+        info = Reserve(user=user, name=name, sex=sex, center=center, nick=nick, diary_open=diary_open, center_exp=center_exp, about=about)
         info.save()
         age = request.POST['age']
         school = request.POST['school']
@@ -236,6 +246,11 @@ def reserve(request):
         return redirect('home')
     else:
         return render(request, 'home.html', {'fault':'저장실패 혹은 오류'})
+    
+def reserve_detail(request, pk):
+    reserve_detail = get_object_or_404(Reserve, pk=pk)
+    # score = User_Chat.objects.all().filter(userId=request.user)
+    return render(request, 'reserve_detail.html', {'reserve':reserve_detail})
     
 
 def socialLogin(request):

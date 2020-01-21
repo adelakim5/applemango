@@ -21,4 +21,6 @@ urlpatterns = [
     path('diary_detail/<int:pk>', views.diary_detail, name="diary_detail"),
     path('diary_delete/<int:pk>', views.diary_delete, name="diary_delete"),
     path('word/<int:pk>', views.word, name="word"),
+    path('mypage', views.mypage, name="mypage"),
+    path('reserve_detail/<int:pk>', views.reserve_detail, name="reserve_detail"),
 ] 

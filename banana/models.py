@@ -11,6 +11,7 @@ class Post(models.Model):
 class User_Chat(models.Model):
     user = models.CharField(max_length=100)
     total = models.IntegerField(null=True, blank=True)
+    userId = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     
 class Question(models.Model):
     question = models.CharField(max_length=100)
@@ -26,17 +27,22 @@ class Reserve(models.Model):
     ]
     CENTER_EXP = [
         ('yes', 'yes'),
-        ('no', 'no')
+        ('no', 'no'),
     ]
     SEX = [
         ('male', '남성'),
         ('female', '여성'),
     ]
+    CENTER = [
+        ('cnu_student', '충남대학교 학생상담센터'),
+        ('cnu_self', '심리성장과 자기조절센터'),
+    ]
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     nick = models.CharField(max_length=20)
     sex = models.CharField(max_length=10, choices=SEX, default='male')
-    # center = models.CharField() 리스트를 api로 받아올텐데 어떻게 해야할지 나중에 생각
+    center = models.CharField(max_length=100, default="None", choices=CENTER) 
+    # 리스트를 api로 받아올텐데 어떻게 해야할지 나중에 생각
     diary_open = models.CharField(max_length=3,choices=DIARY, default='yes')
     center_exp = models.CharField(max_length=3,choices=CENTER_EXP, default='no')
     about = models.TextField()
@@ -52,14 +58,18 @@ class Additional(models.Model):
         ('graduate', '대학원 졸업 이상'),
         ('others', '기타'),
     ]
+    Marriage = [
+         ('yes', 'yes'),
+        ('no', 'no'),
+    ]
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     school = models.CharField(max_length=10, choices=SCHOOL, default='elementary', null=True, blank=True)
     school_others = models.CharField(max_length=100, null=True, blank=True)
-    age = models.IntegerField(null=True, blank=True)
+    age = models.CharField(max_length=8, null=True, blank=True, default="20200120")
     parent = models.CharField(max_length=2, null=True, blank=True)
     reason = models.CharField(max_length=100, null=True, blank=True)
     sibling = models.CharField(max_length=10, null=True, blank=True)
-    marriage = models.CharField(max_length=3, null=True, blank=True)
+    marriage = models.CharField(choices=Marriage, max_length=3, null=True, blank=True)
     child = models.CharField(max_length=3, null=True, blank=True)
     child_num = models.CharField(max_length=10, null=True, default='0')
     date = models.DateTimeField(default=timezone.now)

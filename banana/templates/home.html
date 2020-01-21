@@ -172,7 +172,7 @@ pre.prettyprint{
         <div class="motto">
             <image src="https://i.stack.imgur.com/AIQ61.png" style="width: 100px; height:100px; border-radius : 50px; border: 1px solid white;"/>
             
-            <h2 style="text-decoration: underline;">{{user.username }}</h2>
+            <a href="{% url 'mypage' %}" style="color: #f2f2f2;"><h2 style="text-decoration: underline;">{{user.username }}</h2></a>
             <p>간단한 소개를 입력하시오</p>
             {% comment %} 사용자 아이콘 {% endcomment %}
             {% comment %} 사용자 명 {% endcomment %}
@@ -219,8 +219,8 @@ pre.prettyprint{
                 <div class="mb-3">
 					<label for="reg_id">병원</label>
                      <select name="center" class="form-control" id="center" style="font-size : 14px;">
-                        <option value="cnu_student" style="font-size : 14px;">충남대학교 학생상담센터</option>
-                        <option value="cnu_self" style="font-size : 14px;">심리성장과 자기조절센터</option>
+                        <option name="center" value="cnu_student" style="font-size : 14px;">충남대학교 학생상담센터</option>
+                        <option name="center" value="cnu_self" style="font-size : 14px;">심리성장과 자기조절센터</option>
                     </select>
 				</div>
 
@@ -244,8 +244,8 @@ pre.prettyprint{
 				</div>
                 <br />
 				<div class="mb-3">
-					<label for="about">내용</label>
-					<textarea class="form-control" name="about" id="about" cols="50" rows="10" placeholder="현재 본인이 가지고 있는 문제나 고민사항에 대해서 간략하게 적어 주세요." style="font-size : 14px;"></textarea>
+					<label for="about">어떤 문제로 예약하시나요?</label>
+					<textarea class="form-control" name="about" id="about" cols="50" rows="10" placeholder="현재 본인이 가지고 있는 문제나 고민사항에 대해서 자세히 적어 주세요." style="font-size : 14px;"></textarea>
 				</div>
                 <br />
                 <br />
@@ -255,8 +255,8 @@ pre.prettyprint{
                <br /><br />
                 <div style="background-color : #f2f2f2; padding : 11px; border : 1px solid #f2f2f2; border-radius : 10px;">
                <div class="mb-3">
-					<label>나이</label>
-					<input type="text" class="form-control"  name="age" id="" placeholder="나이" style="font-size : 14px;">
+					<label>생년월일</label>
+					<input type="text" class="form-control"  name="age" id="" placeholder="생년월일 8자리(ex. 20200120)를 적어주세요." style="font-size : 14px;">
 				</div>
                 <br />
 
@@ -289,11 +289,11 @@ pre.prettyprint{
             <input type="number" name="me" value="" style="border : 1px solid #cccccc; width : 50px;">째
             <br /><br />
             <label for="marriage">결혼여부</label> <br>
-            <input type="radio" name="marriage" value="no">미혼
+            <input type="radio" name="marriage" value="no" checked>미혼
             <input type="radio" name="marriage" value="yes">기혼
             <br /><br />
             <label for="child">자녀여부</label> <br>
-            <input type="radio" name="child" value="no">없음
+            <input type="radio" name="child" value="no" checked>없음
             <input type="radio" name="child" value="yes">있음
             <input type="text" name="child_num" value="" placeholder="있으면 몇명?" style="border : 1px solid #cccccc; width : 100px;">
             <br /><br />
